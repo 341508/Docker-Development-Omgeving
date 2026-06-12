@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Service 1: De PHP Webserver
+  web:
+    build: .
+    ports:
+      - "8080:80" # Stuur poort 8080 van je laptop door naar poort 80 in de container
+    volumes:
+      - ./src:/var/www/html # Bind-mount: wijzigingen in je code zijn direct live zichtbaar
+    depends_on:
+      - db
+
+  # Service 2: De MySQL Database
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: geheim123
+      MYSQL_DATABASE: school_db
+    volumes:
+      - db_data:/var/lib/mysql # Persistent volume: je data overleeft een herstart
+
+volumes:
+  db_data: # Definitie van het virtuele opslagstation
