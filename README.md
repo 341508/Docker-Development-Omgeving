@@ -1,8 +1,12 @@
 # PHP Docker App
 
-Een eenvoudige PHP + MySQL stack met Docker en Docker Compose.
+Voor deze opdracht heb ik een simpele PHP-applicatie gemaakt die verbinding maakt met een MySQL-database via Docker.
 
-## Mappenstructuur
+De applicatie draait op `localhost:8080`. Als de verbinding met de database goed werkt, krijg je een succesmelding in de browser.
+
+## Bestanden
+
+In dit project staan de volgende bestanden:
 
 ```text
 php-docker-app/
@@ -14,45 +18,54 @@ php-docker-app/
 └── README.md
 ```
 
-## Starten
+## Project starten
 
-Open een terminal in de hoofdmap `php-docker-app` en voer uit:
+Zorg dat Docker Desktop aan staat.
+
+Open daarna een terminal in de projectmap en voer dit uit:
 
 ```bash
 docker compose up -d
 ```
 
-Open daarna in je browser:
+Open daarna in de browser:
 
 ```text
 http://localhost:8080
 ```
 
-Als alles goed staat, zie je:
+Als alles goed werkt, verschijnt deze melding:
 
 ```text
 🎉 Connectie succesvol! Docker netwerkkopie werkt!
 ```
 
-## Stoppen
+## Project stoppen
+
+Om de containers te stoppen:
 
 ```bash
 docker compose down
 ```
 
-Wil je ook de database-data verwijderen, gebruik dan:
+Om ook de database-data te verwijderen:
 
 ```bash
 docker compose down -v
 ```
 
-## Handige controlecommando's
+## Controle
+
+Handige commands die ik heb gebruikt:
 
 ```bash
 docker --version
 docker compose version
-docker compose ps
+docker ps
 docker compose logs web
 docker compose logs db
 ```
-# Docker-Development-Omgeving
+
+## Korte uitleg
+
+De PHP-code draait in een aparte web-container. De MySQL-database draait in een tweede container. Via `docker-compose.yml` worden deze containers samen gestart en kunnen ze elkaar bereiken via de servicenaam `db`.
